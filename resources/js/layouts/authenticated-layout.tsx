@@ -8,6 +8,7 @@ import {
     BreadcrumbList, BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import AppearanceDropdown from "@/components/appearance-dropdown";
+import { FlashToaster } from "@/components/flash-toaster";
 
 export default function AuthenticatedLayout({
     header,
@@ -37,10 +38,11 @@ export default function AuthenticatedLayout({
                     </div>
                 </header>
 
-                <main className="p-4 md:pt-0 h-full">
+                <main className="min-h-[calc(100vh-4rem)] bg-[#f7f9fc] p-4 md:p-8 dark:bg-background">
                     {children}
                 </main>
             </SidebarInset>
+            <FlashToaster />
         </SidebarProvider>
     );
 }

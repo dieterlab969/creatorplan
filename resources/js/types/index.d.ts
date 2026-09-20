@@ -6,6 +6,7 @@ export interface User {
     name: string;
     email: string;
     email_verified_at: string;
+    avatar?: string | null;
 }
 
 export type PageProps<
@@ -14,7 +15,35 @@ export type PageProps<
     auth: {
         user: User;
     };
+    flash?: { success?: string; error?: string };
 };
+
+export interface Strategy {
+    id?: number;
+    audience: string;
+    problem: string;
+    unique_angle: string;
+    content_pillars: string[];
+}
+
+export interface CalendarVideo {
+    id: number;
+    week_number: number;
+    title: string;
+    topic: string;
+    upload_date: string | null;
+    status: "Planned" | "Filming" | "Editing" | "Published";
+}
+
+export interface Kpi {
+    id: number;
+    month: number;
+    year: number;
+    subscribers: number;
+    avg_views: number;
+    watch_hours: number;
+    notes: string | null;
+}
 
 export type MenuItemProp = {
     title: string;

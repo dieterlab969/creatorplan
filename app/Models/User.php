@@ -19,6 +19,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'google_id',
+        'avatar',
         'password',
     ];
 
@@ -31,6 +33,21 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
+
+    public function strategy()
+    {
+        return $this->hasOne(Strategy::class);
+    }
+
+    public function contentCalendar()
+    {
+        return $this->hasMany(ContentCalendar::class);
+    }
+
+    public function kpis()
+    {
+        return $this->hasMany(Kpi::class);
+    }
 
     /**
      * Get the attributes that should be cast.

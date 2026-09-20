@@ -2,15 +2,10 @@
 
 import * as React from "react"
 import {
-  Command,
-  Frame, Home,
-  LifeBuoy,
-  Send,
-  SquareTerminal,
+  Command, Home, Lightbulb, CalendarDays, BarChart3,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -25,11 +20,6 @@ import {Link, usePage} from "@inertiajs/react";
 import {PageProps} from "@/types";
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
@@ -37,39 +27,18 @@ const data = {
       icon: Home,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-      ],
+      title: "Strategy",
+      url: "/strategy",
+      icon: Lightbulb,
     },
-  {
-      title: "Design Engineering",
-      url: "#",
-      icon: Frame,
-  },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
+    { title: "Calendar", url: "/calendar", icon: CalendarDays },
+    { title: "KPIs", url: "/kpis", icon: BarChart3 },
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const { auth } = usePage<PageProps>().props;
+    if (!auth.user) return null;
 
     return (
     <Sidebar variant="inset" {...props}>
@@ -92,7 +61,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={auth.user} />
